@@ -44,20 +44,6 @@
         <li class="nav-item" active>
             <a class="nav-link" href="{{'/crudUser/'}}"><strong>ADMIN</strong><span class="sr-only"></span></a>
         </li>
-        {% if user.is_authenticated %}
-                    <li class="nav-item" active>
-                        <a class="nav-link float-right" href="{% url 'logout' %}">Cerrar sesión</a>
-                    </li>
-                    <li class="nav-item" active>
-                        <a class="nav-link" href="#">Bienvenido @{{ user.username }}</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item" active>
-                        <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
-                    </li>
-                    
-                    {% endif %}
-
     </ul>
     </div>
 </nav>
@@ -70,7 +56,7 @@
 </div>
 
 </div>
- 
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

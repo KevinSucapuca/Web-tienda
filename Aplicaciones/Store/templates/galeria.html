@@ -1,0 +1,66 @@
+{% extends "./base.html" %}
+{% block title %} Versus {% endblock %}
+
+{% block body %}
+
+{% load static %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.slider').bxSlider({
+            mode: 'fade',//horizontal, vertical, fade
+            auto: true,
+            pause: 4000
+        });
+        });
+</script>
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+
+<div class="slider">
+    <div>
+        <img src="{% static 'images/bannerP.jpg' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'images/banner2.png' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'images/banner3.png' %}" alt="">
+    </div>
+</div>
+
+<center> <h1 class="sm">PRODUCTOS</h1> </center>
+<hr>
+
+<div class="versus1">
+    {% for p in dataproducto %}
+    <div class="versus">
+    
+        <div class="contenedor_versus">
+            {% if p.foto %}
+    
+            <img src="{{ p.foto}}" alt="imagen producto">
+            {% endif %}
+            <div class="detalle">
+                <h5>{{p.NombreProducto }}</h5>
+                
+                <h5>{{p.Marca}}</h4>
+                <div class="button-container">
+                    <h4><a href="#" target="_blank" class="btn btn-info">GO</a></h4>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    {% endfor %}
+</div>
+{% include "paginacionproductos.html" %}
+</div>
+{% endblock %}
