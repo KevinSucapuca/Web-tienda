@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+{% block title %} Productos {% endblock %}
+
+{% block body %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+<div class="detalle">
+    {% if producto.foto %}
+    <img src="{{ producto.foto}}" alt="imagen producto">
+    {% endif %}
+    <h5>{{ producto.NombreProducto }}</h5>
+    <h5>Para: {{ producto.marca }}</h5>
+    <h6>Precio: {{ producto.Precio }}</h6>
+    {% if producto.Descripcion %}
+        <p>{{ producto.Descripcion }}</p>
+    {% endif %}
+</div>
+{% endblock %}

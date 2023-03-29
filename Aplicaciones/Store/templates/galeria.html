@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-{% block title %} Versus {% endblock %}
+{% block title %} Productos {% endblock %}
 
 {% block body %}
 
@@ -50,9 +50,10 @@
             <div class="detalle">
                 <h5>{{p.NombreProducto }}</h5>
                 
-                <h5>Para: {{p.marca}}</h4>
+                <h5>Para: {{p.marca}}</h5>
+                <h6>Precio: {{p.Precio}}</h6>
                 <div class="button-container">
-                    <h4><a href="#" target="_blank" class="btn btn-info">GO</a></h4>
+                    <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info">GO</a></h4>
                 </div>
             </div>
         </div>

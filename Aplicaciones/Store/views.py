@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .models import Producto
 from django.core.paginator import Paginator
+from .models import Producto
 # Create your views here.
 
 
@@ -26,3 +27,11 @@ def home(request):
         paginas = range(1, dataproducto.paginator.num_pages + 1)
     
     return render(request, 'galeria.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual})
+
+
+
+
+def detalle_producto(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    context = {'producto': producto}
+    return render(request, 'detalle_producto.html', context)
