@@ -5,10 +5,6 @@
 
 {% load static %}
 
-{% block css %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-{% endblock %}
 
 <!-- <div class="detalle">
     {% if producto.foto %}
@@ -33,26 +29,26 @@
         <div class="site-section pb-0">
         <div class="container">
             <div class="row align-items-stretch">
-            <div class="col-md-8" data-aos="fade-up">   
+            <div class="col-md-7" data-aos="fade-up">   
                 {% if producto.foto %}
                 <img src="{{ producto.foto}}" alt="imagen producto" class="img-fluid">
                 {% endif %}
             </div>
-            <div class="col-md-3 ml-auto" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-md-5 ml-auto">
                 <div class="sticky-content">
-                <h3 class="h3">Características</h3>
+                <h4 class="h4 m-2">Características</h4>
                 <div class="mb-5">
                     {% if producto.Descripcion %}
                     <p>{{ producto.Descripcion }}</p>
                     {% endif %}
                 </div>
-                <h4 class="h4 mb-3">Detalles</h4>
+                <h4 class="h4 m-2">Detalles</h4>
                 <ul class="list-unstyled list-line mb-5">
-                    <li><h5>{{ producto.NombreProducto }}</h5></li>
-                    <li><h5>Para: {{ producto.marca }}</h5></li>
+                    <li><h6>{{ producto.NombreProducto }}</h6></li>
+                    <li><h6>Para: {{ producto.marca }}</h6></li>
                     <li><h6>Precio: {{ producto.Precio }}</h6></li>
                 </ul>
-                <p><a href="#" class="readmore">Visit Website</a></p>
+                <p><a href="https://api.whatsapp.com/send?phone=+51969528805&text=Buen%20día%20Estoy%20interesado%20en%20el%20producto:%20{{producto.NombreProducto}}" target="_blank" class="readmore">Realizar Pedido</a></p>
                 </div>
             </div>
             </div>
