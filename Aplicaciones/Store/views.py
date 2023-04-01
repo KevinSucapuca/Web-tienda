@@ -16,10 +16,10 @@ def home(request):
     paginas = range(1, dataproducto.paginator.num_pages + 1)
     
     if 'buscar' in request.GET:
-        callsign = request.GET['buscar']
+        producto = request.GET['buscar']
         dataproducto = Producto.objects.filter(
-            Q(NombreProducto__icontains=callsign) |
-            Q(Marca__icontains=callsign))
+            Q(NombreProducto__icontains=producto) |
+            Q(Marca__icontains=producto))
         paginator = Paginator(dataproducto, 8)
         pagina = request.GET.get('page') or 1
         dataproducto = paginator.get_page(pagina)
@@ -35,3 +35,14 @@ def detalle_producto(request, pk):
     producto = get_object_or_404(Producto, pk=pk)
     context = {'producto': producto}
     return render(request, 'detalle_producto.html', context)
+
+def SearchProducto(request):
+    
+    dataproducto = []
+    dataproducto = Producto.objects.all()
+    if 'buscar' in request.GET:
+        producto = request.GET['buscar']
+        dataproducto = Producto.objects.filter(
+            Q(NombreProducto__icontains=producto) |
+            Q(Marca__icontains=producto))
+    return render(request, 'galeria.html', {'dataproducto': dataproducto})
