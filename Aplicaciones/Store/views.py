@@ -54,4 +54,6 @@ def SearchProducto(request):
         # buscar en el campo NombreProducto
         dataproducto = Producto.objects.filter(NombreProducto__iregex=regex)
         
+        
+        
     return render(request, 'galeria.html', {'dataproducto': dataproducto})
