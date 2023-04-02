@@ -3,6 +3,7 @@ from django.db.models import Q
 from .models import Producto
 from django.core.paginator import Paginator
 from .models import Producto
+import re
 # Create your views here.
 
 
@@ -41,8 +42,16 @@ def SearchProducto(request):
     dataproducto = []
     dataproducto = Producto.objects.all()
     if 'buscar' in request.GET:
+        #producto = request.GET['buscar']
+        #dataproducto = Producto.objects.filter(
+            #Q(NombreProducto__icontains=producto))
         producto = request.GET['buscar']
-        dataproducto = Producto.objects.filter(
-            Q(NombreProducto__icontains=producto) |
-            Q(Marca__icontains=producto))
+        palabras = producto.split()
+
+        # construir expresión regular para buscar todas las palabras en cualquier orden
+        regex = '.*' + '.*'.join(palabras) + '.*'
+
+        # buscar en el campo NombreProducto
+        dataproducto = Producto.objects.filter(NombreProducto__iregex=regex)
+        
     return render(request, 'galeria.html', {'dataproducto': dataproducto})
