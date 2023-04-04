@@ -105,6 +105,11 @@ p{
     text-align: center;
     
 }
+.productos{
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight:bold;
+}
 
 .table td,
     .table th {
@@ -113,7 +118,9 @@ p{
     vertical-align: middle;
     }
 
-
+.input-ancho {
+    width: 400px !important; /* ajusta el valor de acuerdo a tus necesidades */
+}
 
 footer{
     text-align: center;
@@ -269,119 +276,6 @@ h1.nombre{
     vertical-align: middle;
     }
 
-.change_content:after {
-    content: "";
-    animation: changetext 18s infinite linear;
-    color: #d3753f;
-    display: block;
-    margin: 0 auto;
-    top: -5px; /* ajustar la posición vertical */
-    
-}
-
-
-
-@keyframes changetext {
-    20% {
-    content: "HACKERITOS";
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: rgb(173, 158, 17);
-    font-weight: bold;
-    margin: 30px 0 20px 0;
-    font-size: 22px;
-    font-weight: 700;
-    text-shadow: 2px 1px 5px black;
-    text-transform: uppercase;
-    }
-
-    30% {
-        content: "HACKERITOS";
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: rgb(43, 5, 5);
-        font-weight: bold;
-        margin: 30px 0 20px 0;
-        font-size: 22px;
-        font-weight: 700;
-        text-shadow: 2px 1px 5px black;
-        text-transform: uppercase;
-        }
-
-
-    45% {
-        content: "WOLFTEAM";
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: rgb(150, 22, 22);
-        font-weight: bold;
-        margin: 30px 0 20px 0;
-        font-size: 22px;
-        font-weight: 700;
-        text-shadow: 2px 1px 5px black;
-        text-transform: uppercase;
-        }
-
-        60% {
-            content: "WOLFTEAM";
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: rgb(150, 22, 22);
-            font-weight: bold;
-            margin: 30px 0 20px 0;
-            font-size: 22px;
-            font-weight: 700;
-            text-shadow: 2px 1px 5px black;
-            text-transform: uppercase;
-            }
-
-
-    80% {
-        content: "CLASSIC";
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: rgb(214, 218, 24);
-        font-weight: bold;
-        margin: 30px 0 20px 0;
-        font-size: 22px;
-        font-weight: 700;
-        text-shadow: 2px 1px 5px black;
-        text-transform: uppercase;
-        }
-
-
-    
-    100% {
-    content: "CLASSIC";
-    color: #0A3871;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
-    margin: 30px 0 20px 0;
-    font-size: 22px;
-    font-weight: 700;
-    text-shadow: 2px 1px 5px black;
-    text-transform: uppercase;
-    }
-
-}
-
-
-
 
 
 h1.nombre{
@@ -448,6 +342,9 @@ footer{
     clear: both;
     
     
+}
+.input-ancho {
+    width: 200px !important; /* ajusta el valor de acuerdo a tus necesidades */
 }
 
 .form-control {
