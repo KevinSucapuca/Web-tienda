@@ -143,7 +143,7 @@ footer{
     font-size: 13px;
     
     position: relative;
-    top: -35px;
+    top: -27px;
 }
 
 
@@ -330,7 +330,7 @@ h1.nombre{
     font-size: 13px;
     
     position: relative;
-    top: -19px;
+    top: -10px;
 }
 
 footer{
@@ -338,10 +338,16 @@ footer{
     background-image: url("../images/BG.png");
     padding: 1px;
     border-top: 1px solid #352E30;
-    height: 220px;
+    height: 280px;
     clear: both;
     
     
+}
+
+
+.logo-footer{
+    width:185px;
+    height:60px;
 }
 .input-ancho {
     width: 200px !important; /* ajusta el valor de acuerdo a tus necesidades */
