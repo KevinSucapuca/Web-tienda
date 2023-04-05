@@ -56,3 +56,25 @@ def SearchProducto(request):
         
         
     return render(request, 'galeria.html', {'dataproducto': dataproducto})
+
+def Liquidacion(request):
+
+    dataproducto = Producto.objects.filter(Estado__icontains='Liquidacion')
+    paginator = Paginator(dataproducto, 8)
+    pagina = request.GET.get('page') or 1
+    dataproducto = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, dataproducto.paginator.num_pages + 1)
+    
+    if 'buscar' in request.GET:
+        producto = request.GET['buscar']
+        dataproducto = Producto.objects.filter(
+            Q(NombreProducto__icontains=producto) |
+            Q(Marca__icontains=producto))
+        paginator = Paginator(dataproducto, 8)
+        pagina = request.GET.get('page') or 1
+        dataproducto = paginator.get_page(pagina)
+        pagina_actual = int(pagina)
+        paginas = range(1, dataproducto.paginator.num_pages + 1)
+    
+    return render(request, 'galeria.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual})
