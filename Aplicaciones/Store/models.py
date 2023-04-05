@@ -7,12 +7,12 @@ class Categoria (models.Model):
         return texto.format(self.Nombre)
 
 class Producto(models.Model):
-    NombreProducto=models.CharField(max_length=35)
+    NombreProducto=models.CharField(max_length=70)
     PrecioActual=models.DecimalField(max_digits=6, decimal_places=2)
     PrecioAnterior=models.DecimalField(max_digits=6, decimal_places=2)
     Estado=models.CharField(max_length=35)
     foto=models.URLField(max_length = 300)
-    Descripcion=models.CharField(max_length=250)
+    Descripcion=models.CharField(max_length=500)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     
     def __str__(self):

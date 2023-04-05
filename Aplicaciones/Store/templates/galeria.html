@@ -64,9 +64,9 @@
             <div class="detalle">
                 <h5>{{p.NombreProducto }}</h5>
                 
-                <h5>Para: {{p.marca}}</h5>
-                <h6>Precio: <span style="color: red;">s/{{p.Precio}}</span></h6>
-                <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{p.Precio}}</span></h6>
+                
+                <h6>Precio: <span style="color: red;">s/{{p.PrecioActual}}</span></h6>
+                <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{p.PrecioAnterior}}</span></h6>
                 <div class="button-container">
                     <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info">Más información</a></h4>
                 </div>
