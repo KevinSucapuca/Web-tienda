@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .models import Producto
 from django.core.paginator import Paginator
-from .models import Producto
 import re
 # Create your views here.
 

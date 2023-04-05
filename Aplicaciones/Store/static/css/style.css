@@ -362,8 +362,9 @@ footer{
 
 
 .versus {
-    width: 100%;
+    width: 48%;
     margin-top: 20px;
+    margin-left: 5px;
 }
 .versus .contenedor_versus {
     background-color: white;
