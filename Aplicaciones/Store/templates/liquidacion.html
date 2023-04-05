@@ -1,0 +1,82 @@
+{% extends "./base.html" %}
+{% block title %} Productos {% endblock %}
+
+{% block body %}
+
+{% load static %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.slider').bxSlider({
+            mode: 'fade',//horizontal, vertical, fade
+            auto: true,
+            pause: 5000
+        });
+        });
+</script>
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+
+<div class="slider">
+    <div>
+        <img src="{% static 'images/banner1.png' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'images/banner2.png' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'images/banner3.png' %}" alt="">
+    </div>
+</div>
+
+<center> <h1 class="productos">PRODUCTOS</h1> </center>
+<hr>
+<div class="table-responsive py-2">
+        
+    <form action="{% url 'SearchProducto' %}" class="form-inline d-flex d-sm-none my-2 my-md-0 d-none d-sm-inline-block form-inline mr-auto ml-md-6 my-2 my-md-0 mw-100 navbar-search py-4 pl-2"
+    method="get">
+    <div class="input-group">
+        <input type="text" class="form-control input-ancho me-2" 
+        placeholder="Buscar" name="buscar" aria-label="Buscar"
+        value="{{ request.GET.buscar }}">
+        <div class="input-group-append">
+        <button class="btn btn-outline-success ml-1" type="submit">Search
+        <i class="fas fa-search fa-sm"></i>
+    </button>
+    </div>
+    </div>
+    </form>
+<div class="versus1">
+    {% for p in dataproducto %}
+    <div class="versus">
+    
+        <div class="contenedor_versus">
+            {% if p.foto %}
+    
+            <img src="{{ p.foto}}" alt="imagen producto">
+            {% endif %}
+            <div class="detalle">
+                <h5>{{p.NombreProducto }}</h5>
+                
+                
+                <h6>Precio: <span style="color: red;">s/{{p.PrecioActual}}</span></h6>
+                <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{p.PrecioAnterior}}</span></h6>
+                <div class="button-container">
+                    <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info">Más información</a></h4>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    {% endfor %}
+</div>
+{% include "paginacionproductos.html" %}
+</div>
+{% endblock %}
