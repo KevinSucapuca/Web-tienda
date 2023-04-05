@@ -9,7 +9,7 @@ import re
 def home(request):
 
     dataproducto = Producto.objects.all().order_by('-id')
-    paginator = Paginator(dataproducto, 8)
+    paginator = Paginator(dataproducto, 9)
     pagina = request.GET.get('page') or 1
     dataproducto = paginator.get_page(pagina)
     pagina_actual = int(pagina)
@@ -20,7 +20,7 @@ def home(request):
         dataproducto = Producto.objects.filter(
             Q(NombreProducto__icontains=producto) |
             Q(Marca__icontains=producto))
-        paginator = Paginator(dataproducto, 8)
+        paginator = Paginator(dataproducto, 9)
         pagina = request.GET.get('page') or 1
         dataproducto = paginator.get_page(pagina)
         pagina_actual = int(pagina)
@@ -53,28 +53,45 @@ def SearchProducto(request):
         # buscar en el campo NombreProducto
         dataproducto = Producto.objects.filter(NombreProducto__iregex=regex)
         
+    paginator = Paginator(dataproducto, 9)
+    pagina = request.GET.get('page') or 1
+    dataproducto = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, dataproducto.paginator.num_pages + 1)   
         
-        
-    return render(request, 'galeria.html', {'dataproducto': dataproducto})
+    return render(request, 'galeria.html', {'dataproducto': dataproducto, 'pagina_actual': pagina_actual, 'paginas': paginas})
 
 def Liquidacion(request):
 
     dataproducto = Producto.objects.filter(Estado__icontains='Liquidacion')
-    paginator = Paginator(dataproducto, 8)
+    paginator = Paginator(dataproducto, 9)
     pagina = request.GET.get('page') or 1
     dataproducto = paginator.get_page(pagina)
     pagina_actual = int(pagina)
     paginas = range(1, dataproducto.paginator.num_pages + 1)
     
-    if 'buscar' in request.GET:
-        producto = request.GET['buscar']
-        dataproducto = Producto.objects.filter(
-            Q(NombreProducto__icontains=producto) |
-            Q(Marca__icontains=producto))
-        paginator = Paginator(dataproducto, 8)
-        pagina = request.GET.get('page') or 1
-        dataproducto = paginator.get_page(pagina)
-        pagina_actual = int(pagina)
-        paginas = range(1, dataproducto.paginator.num_pages + 1)
+    return render(request, 'Liquidacion.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual})
+
+def SearchLiquidacion(request):
     
-    return render(request, 'galeria.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual})
+    dataproducto = []
+    
+    if 'buscar' in request.GET:
+        #producto = request.GET['buscar']
+        #dataproducto = Producto.objects.filter(
+            #Q(NombreProducto__icontains=producto))
+        producto = request.GET['buscar']
+        palabras = producto.split()
+
+        # construir expresión regular para buscar todas las palabras en cualquier orden
+        regex = '.*' + '.*'.join(palabras) + '.*'
+
+        # buscar en el campo NombreProducto
+        dataproducto = Producto.objects.filter(
+            Q(NombreProducto__iregex=regex) & Q(Estado__iexact='Liquidacion'))
+    paginator = Paginator(dataproducto, 9)
+    pagina = request.GET.get('page') or 1
+    dataproducto = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, dataproducto.paginator.num_pages + 1)
+    return render(request, 'Liquidacion.html', {'dataproducto': dataproducto, 'pagina_actual': pagina_actual, 'paginas': paginas})
