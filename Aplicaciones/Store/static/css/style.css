@@ -215,6 +215,9 @@ h1.nombre{
 .versus {
     width: 33%;
     margin-top: 20px;
+    border: 1px solid #ccc;
+    margin-left: 3px;
+    padding-top: 3px;
 }
 
 .versus img {
@@ -226,12 +229,13 @@ h1.nombre{
 .versus .detalle{
     padding: 4px;
     margin-left: 5px;
+    
 
     
 }
 
 .versus .contenedor_versus {
-    background-color: white;
+    background-color: transparent;
     width: 97%;
     margin: auto;
     height: auto; /* ajustar la altura automáticamente */
@@ -243,7 +247,11 @@ h1.nombre{
     overflow: hidden; /* ocultar cualquier contenido que se desborde */
 }
 .button-container {
-    text-align: left;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 
@@ -264,7 +272,11 @@ h1.nombre{
 } 
 
 
-
+.my-container {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
 
 
 
