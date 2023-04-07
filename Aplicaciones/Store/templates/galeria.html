@@ -47,90 +47,31 @@
 
 <section>
 <div class="container">
-<div class="row">
-<div class="col-sm-3">
-    <div class="left-sidebar">
-        <h2>Category</h2>
-        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                            Sportswear
-                        </a>
-                    </h4>
+    <div class="row">
+        <div class="col-sm-3">
+        <div class="left-sidebar">
+            <h2>Categoria</h2>
+            <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span class="badge bg-secondary me-2">+  </span>
+                    <span class="ms-2">Cases</span>
+                </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <ul>
+                    <li><a href="#">Redmi Note 7</a></li>
+                    <li><a href="#">Mi 9T</a></li>
+                    <li><a href="#">Redmi Note 10</a></li>
+                    <li><a href="#">Mi 10</a></li>
+                    <li><a href="#">Mi 11</a></li>
+                    </ul>
                 </div>
-                <div id="sportswear" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ul>
-                            <li><a href="#">Nike </a></li>
-                            <li><a href="#">Under Armour </a></li>
-                            <li><a href="#">Adidas </a></li>
-                            <li><a href="#">Puma</a></li>
-                            <li><a href="#">ASICS </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                            Mens
-                        </a>
-                    </h4>
-                </div>
-                <div id="mens" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ul>
-                            <li><a href="#">Fendi</a></li>
-                            <li><a href="#">Guess</a></li>
-                            <li><a href="#">Valentino</a></li>
-                            <li><a href="#">Dior</a></li>
-                            <li><a href="#">Versace</a></li>
-                            <li><a href="#">Armani</a></li>
-                            <li><a href="#">Prada</a></li>
-                            <li><a href="#">Dolce and Gabbana</a></li>
-                            <li><a href="#">Chanel</a></li>
-                            <li><a href="#">Gucci</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                            Womens
-                        </a>
-                    </h4>
-                </div>
-                <div id="womens" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ul>
-                            <li><a href="#">Fendi</a></li>
-                            <li><a href="#">Guess</a></li>
-                            <li><a href="#">Valentino</a></li>
-                            <li><a href="#">Dior</a></li>
-                            <li><a href="#">Versace</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">Kids</a></h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">Fashion</a></h4>
-                </div>
-            </div>      
         </div>
     </div>
 </div>
@@ -182,8 +123,8 @@
                 
                 <h6>Precio: <span style="color: red;">s/{{p.PrecioActual}}</span></h6>
                 <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{p.PrecioAnterior}}</span></h6>
-                <div class="button-container">
-                    <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info">Más información</a></h4>
+                <div class="button-container d-flex justify-content-center ">
+                    <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info ">Más información</a></h4>
                 </div>
             </div>
         </div>
