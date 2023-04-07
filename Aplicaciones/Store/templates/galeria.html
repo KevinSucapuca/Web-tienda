@@ -42,70 +42,49 @@
 </div>
 
 
-
-
+<div class="container">
+<div class="row">
+    <div class="col-md-6">
+    <form action="{% url 'SearchProducto' %}" method="get" class="d-flex my-3">
+        <input type="text" class="form-control me-2" name="buscar" placeholder="Buscar productos" aria-label="Buscar productos" value="{{ request.GET.buscar }}">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    </div>
 
 <section>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3">
-        <div class="left-sidebar">
-            <h2>Categoria</h2>
-            <div class="accordion " id="accordionExample">
-            <div class="accordion-item my-container">
-                <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <span class="badge bg-secondary me-2">+  </span>
-                    <span class="ms-2">Cases</span>
-                </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body ">
-                    <ul>
-                    <li><a href="#">Redmi Note 7</a></li>
-                    <li><a href="#">Mi 9T</a></li>
-                    <li><a href="#">Redmi Note 10</a></li>
-                    <li><a href="#">Mi 10</a></li>
-                    <li><a href="#">Mi 11</a></li>
-                    </ul>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Categoria</h2>
+                    <div class="accordion " id="accordionExample">
+                        <div class="accordion-item my-container">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span class="badge bg-secondary me-2">+  </span>
+                                    <span class="ms-2">Cases</span>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body ">
+                                    <ul>
+                                        <li><a href="#">Redmi Note 7</a></li>
+                                        <li><a href="#">Mi 9T</a></li>
+                                        <li><a href="#">Redmi Note 10</a></li>
+                                        <li><a href="#">Mi 10</a></li>
+                                        <li><a href="#">Mi 11</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-        </div>
-    </div>
-</div>
-
-
-
 
 
 <div class="col-sm-9 padding-right">
 <center> <h1 class="productos">PRODUCTOS</h1> </center>
 <hr>
-
-
-
-
-<div class="table-responsive py-2">
-        
-    <form action="{% url 'SearchProducto' %}" class="form-inline d-flex d-sm-none my-2 my-md-0 d-none d-sm-inline-block form-inline mr-auto ml-md-6 my-2 my-md-0 mw-100 navbar-search py-4 pl-2"
-    method="get">
-    <div class="input-group">
-        <input type="text" class="form-control input-ancho me-2" 
-        placeholder="Buscar" name="buscar" aria-label="Buscar"
-        value="{{ request.GET.buscar }}">
-        <div class="input-group-append">
-        <button class="btn btn-outline-success ml-1" type="submit">Search
-        <i class="fas fa-search fa-sm"></i>
-    </button>
-    </div>
-    </div>
-
-    </form>
-
-
-
 
 
 <div class="versus1">
@@ -133,9 +112,11 @@
 
 
     {% endfor %}
+    
+</div>
+{% include "paginacionproductos.html" %}
+</section>
+
 </div>
 
-{% include "paginacionproductos.html" %}
-</div>
-</section>
 {% endblock %}
