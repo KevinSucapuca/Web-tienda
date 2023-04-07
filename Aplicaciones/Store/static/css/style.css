@@ -125,10 +125,13 @@ p{
 footer{
     text-align: center;
     background-image: url("../images/BG.png");
+    background-size: cover;
+    background-position: top;
     padding: 1px;
     border-top: 1px solid #352E30;
     height: 275px;
     clear: both;
+    
     
     
 }
@@ -210,7 +213,7 @@ h1.nombre{
 }
 
 .versus {
-    width: 33.33%;
+    width: 33%;
     margin-top: 20px;
 }
 
@@ -221,13 +224,14 @@ h1.nombre{
 }
 
 .versus .detalle{
-    padding: 5px;
+    padding: 4px;
+
     
 }
 
 .versus .contenedor_versus {
     background-color: white;
-    width: 80%;
+    width: 97%;
     margin: auto;
     height: auto; /* ajustar la altura automáticamente */
     overflow: hidden; /* ocultar cualquier contenido que se desborde */
@@ -257,6 +261,9 @@ h1.nombre{
     height: 100%;
     border: 0;
 } 
+
+
+
 
 
 
