@@ -101,8 +101,20 @@ def SearchProducto(request):
     dataproducto = paginator.get_page(pagina)
     pagina_actual = int(pagina)
     paginas = range(1, dataproducto.paginator.num_pages + 1)   
-        
-    return render(request, 'galeria.html', {'dataproducto': dataproducto, 'pagina_actual': pagina_actual, 'paginas': paginas})
+    categorias = Categoria.objects.all()
+
+    for categoria in categorias:
+        categoria.tags = Tag.objects.filter(categoria=categoria)
+            
+    context = {
+        'dataproducto': dataproducto,
+        'paginas': paginas,
+        'pagina_actual': pagina_actual,
+        'categorias': categorias,
+    }
+
+    return render(request, 'galeria.html', context)
+
 
 def Liquidacion(request):
 
