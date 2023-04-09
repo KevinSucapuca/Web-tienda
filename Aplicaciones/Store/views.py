@@ -1,14 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
-from .models import Producto
+from .models import Producto,Categoria,Tag
 from django.core.paginator import Paginator
 import re
 # Create your views here.
 
 
 def home(request):
+    
+    categorias = Categoria.objects.all()
 
-    dataproducto = Producto.objects.all().order_by('-id')
+    for categoria in categorias:
+        categoria.tags = Tag.objects.filter(categoria=categoria)
+
+    dataproducto = Producto.objects.all().order_by('-id')  
     paginator = Paginator(dataproducto, 9)
     pagina = request.GET.get('page') or 1
     dataproducto = paginator.get_page(pagina)
@@ -25,10 +30,48 @@ def home(request):
         dataproducto = paginator.get_page(pagina)
         pagina_actual = int(pagina)
         paginas = range(1, dataproducto.paginator.num_pages + 1)
+
+    context = {
+        'dataproducto': dataproducto,
+        'paginas': paginas,
+        'pagina_actual': pagina_actual,
+        'categorias': categorias,
+    }
+
+    return render(request, 'galeria.html', context)
+
+    # dataproducto = Producto.objects.all().order_by('-id')  
+    # paginator = Paginator(dataproducto, 9)
+    # pagina = request.GET.get('page') or 1
+    # dataproducto = paginator.get_page(pagina)
+    # pagina_actual = int(pagina)
+    # paginas = range(1, dataproducto.paginator.num_pages + 1)
     
-    return render(request, 'galeria.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual})
+    # if 'buscar' in request.GET:
+    #     producto = request.GET['buscar']
+    #     dataproducto = Producto.objects.filter(
+    #         Q(NombreProducto__icontains=producto) |
+    #         Q(Marca__icontains=producto))
+    #     paginator = Paginator(dataproducto, 9)
+    #     pagina = request.GET.get('page') or 1
+    #     dataproducto = paginator.get_page(pagina)
+    #     pagina_actual = int(pagina)
+    #     paginas = range(1, dataproducto.paginator.num_pages + 1)
+    
+    # return render(request, 'galeria.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual})
 
 
+def mi_vista(request):
+    categorias = Categoria.objects.all()
+
+    for categoria in categorias:
+        categoria.tags = Tag.objects.filter(categoria=categoria)
+
+    context = {
+        'categorias': categorias
+    }
+
+    return render(request, 'galeria.html', context)
 
 
 def detalle_producto(request, pk):

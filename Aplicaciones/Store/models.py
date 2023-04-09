@@ -8,9 +8,10 @@ class Categoria (models.Model):
     
 class Tag (models.Model):
     Nombre = models.CharField(max_length=35)
+    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     def __str__(self):
         texto = "{0}"
-        return texto.format(self.Nombre)
+        return texto.format(self.Nombre, self.categoria)
 
 class Producto(models.Model):
     NombreProducto=models.CharField(max_length=70)
@@ -20,9 +21,9 @@ class Producto(models.Model):
     foto=models.URLField(max_length = 300)
     Descripcion=models.CharField(max_length=500)
     tag=models.ForeignKey(Tag, on_delete=models.PROTECT)
-    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
+    
     
     def __str__(self):
         texto = "{0} {1} {2} {3} {4}"
-        return texto.format(self.NombreProducto, self.PrecioActual,self.PrecioAnterior, self.Estado, self.foto, self.categoria)
+        return texto.format(self.NombreProducto, self.PrecioActual,self.PrecioAnterior, self.Estado, self.foto,self.Descripcion,self.tag)
 
