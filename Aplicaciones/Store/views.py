@@ -150,3 +150,13 @@ def SearchLiquidacion(request):
     pagina_actual = int(pagina)
     paginas = range(1, dataproducto.paginator.num_pages + 1)
     return render(request, 'Liquidacion.html', {'dataproducto': dataproducto, 'pagina_actual': pagina_actual, 'paginas': paginas})
+
+
+def mostrar_productos_por_tag(request, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    productos = Producto.objects.filter(tag=tag)
+    context = {
+        'productos': productos,
+        'tag': tag
+    }
+    return render(request, 'productos_por_tag.html', context)
