@@ -102,8 +102,8 @@
             {% endif %}
             <div class="detalle">
                 <h6>{{producto.NombreProducto }}</h6>
-                <h6>Precio: <span style="color: red;">s/{{producto.PrecioActual}}</span></h6>
-                <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{p.PrecioAnterior}}</span></h6>
+                <h6>Antes: <span style="color: red;">s/{{producto.PrecioActual}}</span></h6>
+                <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{producto.PrecioAnterior}}</span></h6>
                 <div class="button-container d-flex justify-content-center ">
                     <h4><a href="{% url 'detalle_producto' pk=producto.pk %}" class="btn btn-info ">Más información</a></h4>
                 </div>
