@@ -14,7 +14,10 @@
             pause: 5000
         });
         });
+
+    
 </script>
+
 <!--<script src="js/jquery.js"></script> -->
 
 
@@ -71,7 +74,7 @@
                 <div class="accordion-body">
                     <ul>
                     {% for tag in categoria.tags.all %}
-                    <li><a href="#">{{ tag.Nombre }}</a></li>
+                    <li><a href="{% url 'productos_por_tag' tag.slug %}">{{ tag.Nombre }}</a></li>
                     {% endfor %}
                     </ul>
                 </div>

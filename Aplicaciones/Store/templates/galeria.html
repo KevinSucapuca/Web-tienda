@@ -39,7 +39,7 @@
         <img src="{% static 'images/banner3.png' %}" alt="">
     </div>
 </div>
-<section>
+
 <div class="container">
 <div class="row">
     <div class="col-md-6">
@@ -61,7 +61,7 @@
             <div class="accordion-item my-container">
     
                 <h2 class="accordion-header" id="heading{{ categoria.id }}">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ categoria.id }}" aria-expanded="true" aria-controls="collapse{{ categoria.id }}">
+                <button  class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ categoria.id }}" aria-expanded="true" aria-controls="collapse{{ categoria.id }}">
                     <span class="badge bg-secondary me-2">+  </span>
                     <span class="ms-2">{{ categoria.Nombre }}</span>
                 </button>
@@ -101,8 +101,9 @@
             {% endif %}
             <div class="detalle">
                 <h6><span style="color: #0068c8;">{{p.NombreProducto }}</span></h6>
-                <h6>Ahora: <span style="color: red;">s/{{p.PrecioActual}}</span></h6> 
                 <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{p.PrecioAnterior}}</span></h6>
+                <h6>Ahora: <span style="color: red;">s/{{p.PrecioActual}}</span></h6> 
+                
                 <div class="button-container d-flex justify-content-center ">
                     <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info ">Más información</a></h4>
                 </div>
@@ -116,7 +117,7 @@
     
 </div>
 {% include "paginacionproductos.html" %}
-</section>
+
 
 </div>
 

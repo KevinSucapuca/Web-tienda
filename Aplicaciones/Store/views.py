@@ -154,9 +154,26 @@ def SearchLiquidacion(request):
 
 def mostrar_productos_por_tag(request, tag_slug):
     tag = get_object_or_404(Tag, slug=tag_slug)
-    productos = Producto.objects.filter(tag=tag)
+    print(tag)  
+    productos = Producto.objects.filter(tag=tag).distinct()
+    
+    categorias = Categoria.objects.all()
+    for categoria in categorias:
+        categoria.tags = Tag.objects.filter(categoria=categoria)
+        
+    dataproducto = Producto.objects.all()
+    paginator = Paginator(dataproducto, 9)
+    pagina = request.GET.get('page') or 1
+    dataproducto = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, dataproducto.paginator.num_pages + 1)
     context = {
+        
         'productos': productos,
-        'tag': tag
+        'tag': tag,
+        'categorias': categorias,
+        'dataproducto': dataproducto,
+        'paginas': paginas,
+        'pagina_actual': pagina_actual,
     }
     return render(request, 'productos_por_tag.html', context)
