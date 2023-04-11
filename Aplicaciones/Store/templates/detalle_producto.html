@@ -48,8 +48,9 @@
                 <h4 class="h4 m-2">Detalles</h4>
                 <ul class="list-unstyled list-line mb-5">
                     <li><h6>{{ producto.NombreProducto }}</h6></li>
-                    <li><h6>Ahora: <span style="color: red;">s/ {{producto.PrecioActual}}</span></h6></li>
                     <li><h6>Antes: <span style="text-decoration: line-through; color: gray;">s/ {{producto.PrecioAnterior}}</span></h6></li>
+                    <li><h6>Ahora: <span style="color: red;">s/ {{producto.PrecioActual}}</span></h6></li>
+                    
                 </ul>
                 <p><a href="https://api.whatsapp.com/send?phone=+51969528805&text=Buen%20día%20Estoy%20interesado%20en%20el%20producto:%20{{producto.NombreProducto}}" target="_blank" class="readmore">Realizar Pedido</a></p>
                 </div>

@@ -278,6 +278,9 @@ h1.nombre{
     padding: 10px;
 }
 
+.align-precio{
+    text-align: center !important;
+}
 
 
 /*###################################################*/
