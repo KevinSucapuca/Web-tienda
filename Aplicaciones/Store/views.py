@@ -13,6 +13,7 @@ def home(request):
     for categoria in categorias:
         categoria.tags = Tag.objects.filter(categoria=categoria)
 
+
     dataproducto = Producto.objects.all().order_by('-id')  
     paginator = Paginator(dataproducto, 9)
     pagina = request.GET.get('page') or 1
@@ -117,6 +118,11 @@ def SearchProducto(request):
 
 
 def Liquidacion(request):
+    categorias = Categoria.objects.all()
+
+    for categoria in categorias:
+        categoria.tags = Tag.objects.filter(categoria=categoria)
+
 
     dataproducto = Producto.objects.filter(Estado__icontains='Liquidacion')
     paginator = Paginator(dataproducto, 9)
@@ -125,7 +131,7 @@ def Liquidacion(request):
     pagina_actual = int(pagina)
     paginas = range(1, dataproducto.paginator.num_pages + 1)
     
-    return render(request, 'Liquidacion.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual})
+    return render(request, 'Liquidacion.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual,'categorias': categorias})
 
 def SearchLiquidacion(request):
     
@@ -154,12 +160,13 @@ def SearchLiquidacion(request):
 
 def mostrar_productos_por_tag(request, tag_slug):
     tag = get_object_or_404(Tag, slug=tag_slug)
-    print(tag)  
     productos = Producto.objects.filter(tag=tag).distinct()
     
     categorias = Categoria.objects.all()
     for categoria in categorias:
         categoria.tags = Tag.objects.filter(categoria=categoria)
+        
+    
         
     dataproducto = Producto.objects.all()
     paginator = Paginator(dataproducto, 9)
@@ -181,9 +188,10 @@ def mostrar_productos_por_tag(request, tag_slug):
 def mostrar_productos_por_tag_liquidacion(request, tag_slug):
     tag = get_object_or_404(Tag, slug=tag_slug)
     productos = Producto.objects.filter(tag=tag, Estado='Liquidacion').distinct()
+    
     categorias = Categoria.objects.all()
     for categoria in categorias:
-        categoria.tags = categoria.tag_set.all()
+        categoria.tags = Tag.objects.filter(categoria=categoria)
         
     dataproducto = Producto.objects.all()
     paginator = Paginator(dataproducto, 9)
@@ -192,6 +200,7 @@ def mostrar_productos_por_tag_liquidacion(request, tag_slug):
     pagina_actual = int(pagina)
     paginas = range(1, dataproducto.paginator.num_pages + 1)
     context = {
+        
         'productos': productos,
         'tag': tag,
         'categorias': categorias,
