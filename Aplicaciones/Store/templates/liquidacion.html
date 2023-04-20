@@ -53,7 +53,7 @@
             <h2 class="productos">CATEGORÍA</h2>
     
             <div class="accordion" id="accordionExample">
-            {% for categoria in categorias %}
+            {% for categoria, tags in categorias.items %}
             <div class="accordion-item my-container">
     
                 <h2 class="accordion-header" id="heading{{ categoria.id }}">
@@ -66,8 +66,8 @@
                 <div id="collapse{{ categoria.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ categoria.id }}" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <ul>
-                    {% for tag in categoria.tags.all %}
-                    <li><a href="{% url 'productos_por_tag' tag.slug %}">{{ tag.Nombre }}</a></li>
+                        {% for tag in tags %}
+                    <li><a href="{% url 'productos_por_tag_liquidacion' tag.slug %}">{{ tag.Nombre }}</a></li>
                     {% endfor %}
                     </ul>
                 </div>

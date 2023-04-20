@@ -177,3 +177,26 @@ def mostrar_productos_por_tag(request, tag_slug):
         'pagina_actual': pagina_actual,
     }
     return render(request, 'productos_por_tag.html', context)
+
+def mostrar_productos_por_tag_liquidacion(request, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    productos = Producto.objects.filter(tag=tag, Estado='Liquidacion').distinct()
+    categorias = Categoria.objects.all()
+    for categoria in categorias:
+        categoria.tags = categoria.tag_set.all()
+        
+    dataproducto = Producto.objects.all()
+    paginator = Paginator(dataproducto, 9)
+    pagina = request.GET.get('page') or 1
+    dataproducto = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, dataproducto.paginator.num_pages + 1)
+    context = {
+        'productos': productos,
+        'tag': tag,
+        'categorias': categorias,
+        'dataproducto': dataproducto,
+        'paginas': paginas,
+        'pagina_actual': pagina_actual,
+    }
+    return render(request, 'liquidacion.html', context)
