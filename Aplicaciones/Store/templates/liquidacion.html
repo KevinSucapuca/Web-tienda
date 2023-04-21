@@ -85,11 +85,8 @@
 <center> <h1 class="productos">PRODUCTOS EN LIQUIDACIÓN</h1> </center>
 <hr>
 
-
-
-
 <div class="versus1">
-    {% for p in dataproducto %}
+    {% for p in productos %}
     <div class="versus">
     
         <div class="contenedor_versus">
@@ -98,22 +95,25 @@
             <img src="{{ p.foto}}" alt="imagen producto">
             {% endif %}
             <div class="detalle">
-                <h5>{{p.NombreProducto }}</h5>
+                <h6><span style="color: #0068c8;">{{p.NombreProducto }}</span></h6>
+                <h6 class="align-precio"><span style="text-decoration: line-through; color: gray;">s/{{p.PrecioAnterior}}</span>&nbsp;
+                <span style="color: red;">s/{{p.PrecioActual}}</span></h6> 
                 
-                
-                <h6>Precio: <span style="color: red;">s/{{p.PrecioActual}}</span></h6>
-                <h6>Antes: <span style="text-decoration: line-through; color: gray;">s/{{p.PrecioAnterior}}</span></h6>
-                <div class="button-container">
-                    <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info">Más información</a></h4>
+                <div class="button-container d-flex justify-content-center ">
+                    <h4><a href="{% url 'detalle_producto' p.id %}" class="btn btn-info ">Más información</a></h4>
                 </div>
             </div>
         </div>
     
     </div>
 
+
     {% endfor %}
+    
 </div>
 {% include "paginacionproductos.html" %}
-</section>
+
+</section>  
 </div>
+
 {% endblock %}

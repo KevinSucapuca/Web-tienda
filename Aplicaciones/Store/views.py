@@ -124,14 +124,14 @@ def Liquidacion(request):
         categoria.tags = Tag.objects.filter(categoria=categoria)
 
 
-    dataproducto = Producto.objects.filter(Estado__icontains='Liquidacion')
-    paginator = Paginator(dataproducto, 9)
+    productos = Producto.objects.filter(Estado__icontains='Liquidacion')
+    paginator = Paginator(productos, 9)
     pagina = request.GET.get('page') or 1
-    dataproducto = paginator.get_page(pagina)
+    productos = paginator.get_page(pagina)
     pagina_actual = int(pagina)
-    paginas = range(1, dataproducto.paginator.num_pages + 1)
+    paginas = range(1, productos.paginator.num_pages + 1)
     
-    return render(request, 'Liquidacion.html', {'dataproducto': dataproducto, 'paginas': paginas, 'pagina_actual': pagina_actual,'categorias': categorias})
+    return render(request, 'Liquidacion.html', {'productos': productos, 'paginas': paginas, 'pagina_actual': pagina_actual,'categorias': categorias})
 
 def SearchLiquidacion(request):
     
@@ -199,6 +199,8 @@ def mostrar_productos_por_tag_liquidacion(request, tag_slug):
     dataproducto = paginator.get_page(pagina)
     pagina_actual = int(pagina)
     paginas = range(1, dataproducto.paginator.num_pages + 1)
+    
+    
     context = {
         
         'productos': productos,
