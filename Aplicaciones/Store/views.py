@@ -117,6 +117,46 @@ def SearchProducto(request):
     return render(request, 'galeria.html', context)
 
 
+def SearchLiquidacion(request):
+    
+    productos = []
+    productos = Producto.objects.all()
+    if 'buscar' in request.GET:
+        #producto = request.GET['buscar']
+        #dataproducto = Producto.objects.filter(
+            #Q(NombreProducto__icontains=producto))
+        producto = request.GET['buscar']
+        palabras = producto.split()
+
+        # construir expresión regular para buscar todas las palabras en cualquier orden
+        regex = '.*' + '.*'.join(palabras) + '.*'
+
+        # buscar en el campo NombreProducto
+        
+        
+        productos = Producto.objects.filter(
+            Q(NombreProducto__iregex=regex) & Q(Estado__iexact='Liquidacion'))
+    paginator = Paginator(productos, 9)
+    pagina = request.GET.get('page') or 1
+    productos = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, productos.paginator.num_pages + 1)
+    
+    categorias = Categoria.objects.all()
+
+    for categoria in categorias:
+        categoria.tags = Tag.objects.filter(categoria=categoria)
+        
+    context = {
+        'productos': productos,
+        'paginas': paginas,
+        'pagina_actual': pagina_actual,
+        'categorias': categorias,
+    }
+
+    return render(request, 'liquidacion.html', context)
+
+
 def Liquidacion(request):
     categorias = Categoria.objects.all()
 
@@ -133,29 +173,6 @@ def Liquidacion(request):
     
     return render(request, 'Liquidacion.html', {'productos': productos, 'paginas': paginas, 'pagina_actual': pagina_actual,'categorias': categorias})
 
-def SearchLiquidacion(request):
-    
-    dataproducto = []
-    
-    if 'buscar' in request.GET:
-        #producto = request.GET['buscar']
-        #dataproducto = Producto.objects.filter(
-            #Q(NombreProducto__icontains=producto))
-        producto = request.GET['buscar']
-        palabras = producto.split()
-
-        # construir expresión regular para buscar todas las palabras en cualquier orden
-        regex = '.*' + '.*'.join(palabras) + '.*'
-
-        # buscar en el campo NombreProducto
-        dataproducto = Producto.objects.filter(
-            Q(NombreProducto__iregex=regex) & Q(Estado__iexact='Liquidacion'))
-    paginator = Paginator(dataproducto, 9)
-    pagina = request.GET.get('page') or 1
-    dataproducto = paginator.get_page(pagina)
-    pagina_actual = int(pagina)
-    paginas = range(1, dataproducto.paginator.num_pages + 1)
-    return render(request, 'Liquidacion.html', {'dataproducto': dataproducto, 'pagina_actual': pagina_actual, 'paginas': paginas})
 
 
 def mostrar_productos_por_tag(request, tag_slug):
