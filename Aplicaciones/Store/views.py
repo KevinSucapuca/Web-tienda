@@ -228,3 +228,23 @@ def mostrar_productos_por_tag_liquidacion(request, tag_slug):
         'pagina_actual': pagina_actual,
     }
     return render(request, 'liquidacion.html', context)
+
+
+
+def otros_productos(request):
+    
+    dataproducto = Producto.objects.filter(Estado__icontains='Otros')  
+    paginator = Paginator(dataproducto, 9)
+    pagina = request.GET.get('page') or 1
+    dataproducto = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    paginas = range(1, dataproducto.paginator.num_pages + 1)
+
+    context = {
+        'dataproducto': dataproducto,
+        'paginas': paginas,
+        'pagina_actual': pagina_actual,
+        
+    }
+
+    return render(request, 'otros_productos.html', context)
